@@ -19,7 +19,7 @@ binding = "ASSETS"
 # 2) Paste the printed "id" below (replace PASTE_KV_NAMESPACE_ID_HERE).
 [[kv_namespaces]]
 binding = "KV"
-id = "PASTE_KV_NAMESPACE_ID_HERE"
+id = "5eba849ef6b340c0b8ff3c3a80572071"
 
 # ── Optional: Discord login ──────────────────────────────────────────────
 # Public, non-secret config can live here. SECRETS (client secret, session
