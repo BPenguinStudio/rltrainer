@@ -1,0 +1,21 @@
+{
+  "name": "rltrainer",
+  "version": "1.0.0",
+  "description": "RL Trainer — a beautiful, Rocket League-themed skills guide that takes you from Bronze to Supersonic Legend, with Discord login and saved progress.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "rocket-league",
+    "training",
+    "guide",
+    "discord-oauth"
+  ],
+  "license": "MIT"
+}
