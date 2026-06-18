@@ -57,6 +57,28 @@ Change the port with `PORT=8080 node server.js`.
 
 ---
 
+## ☁️ Put it online (free link)
+
+Want a permanent URL you can open on your phone or share with friends? Deploy to
+**Cloudflare Workers** for a free `https://rltrainer.<you>.workers.dev` link — no
+domain required. The whole app (UI, all 60 skills, Discord login) runs there,
+backed by Cloudflare KV instead of a local file.
+
+Full step-by-step instructions are in **[CLOUDFLARE.md](CLOUDFLARE.md)**. The
+short version:
+
+```bash
+npm install
+npx wrangler login
+npx wrangler kv namespace create KV   # paste the printed id into wrangler.toml
+npx wrangler deploy                   # prints your live URL
+```
+
+> `server.js` (plain Node) and `worker.js` (Cloudflare) are two ways to run the
+> same app — pick whichever fits where you're hosting.
+
+---
+
 ## 🔗 Enabling "Log in with Discord"
 
 Discord login works as soon as you give the app OAuth credentials.
@@ -95,8 +117,10 @@ to Discord on your behalf.
 
 ```
 rltrainer/
-├── server.js            # Zero-dependency Node server: static hosting,
-│                        # Discord OAuth, sessions, JSON persistence, API
+├── server.js            # Plain Node server (local / Render / any Node host):
+│                        # static hosting, Discord OAuth, sessions, JSON storage
+├── worker.js            # Cloudflare Workers version of the same app (KV storage)
+├── wrangler.toml        # Cloudflare deploy config
 ├── public/
 │   ├── index.html       # App shell
 │   ├── css/styles.css   # The neon-arena theme
@@ -104,9 +128,11 @@ rltrainer/
 │       ├── app.js       # SPA: login, profile, train, community
 │       ├── skills.js    # The full 60-skill curriculum (data)
 │       └── emblems.js   # Procedural SVG rank badges
-├── data/                # Created at runtime (gitignored):
+├── data/                # Created at runtime by server.js (gitignored):
 │                        #   db.json (users + progress), .session-secret
-├── .env.example         # Configuration template
+├── .env.example         # Config template for server.js (Node)
+├── .dev.vars.example    # Config template for `wrangler dev` (Cloudflare local)
+├── CLOUDFLARE.md        # Deploy-to-Cloudflare guide
 └── package.json
 ```
 

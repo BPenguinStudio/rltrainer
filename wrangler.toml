@@ -1,0 +1,31 @@
+# ─────────────────────────────────────────────────────────────────────────
+#  Cloudflare Workers configuration for RL Trainer
+#  Deploy guide: see CLOUDFLARE.md
+# ─────────────────────────────────────────────────────────────────────────
+
+name = "rltrainer"
+main = "worker.js"
+compatibility_date = "2025-03-01"
+
+# Static front-end (public/) is uploaded and served automatically.
+# When no asset matches a request, the Worker runs (for /api/*, /auth/*,
+# and SPA fallback). The Worker reads assets back through this binding.
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+# Key-value store for user accounts + progress.
+# 1) Create it once:   npx wrangler kv namespace create KV
+# 2) Paste the printed "id" below (replace PASTE_KV_NAMESPACE_ID_HERE).
+[[kv_namespaces]]
+binding = "KV"
+id = "5eba849ef6b340c0b8ff3c3a80572071"
+
+# ── Optional: Discord login ──────────────────────────────────────────────
+# Public, non-secret config can live here. SECRETS (client secret, session
+# secret) must be set with `wrangler secret put`, NOT committed here.
+[vars]
+# DISCORD_CLIENT_ID = "your_application_id"
+# After your first deploy you'll know your URL; if you want to pin the OAuth
+# redirect explicitly, set it here (otherwise it's derived automatically):
+# DISCORD_REDIRECT_URI = "https://rltrainer.<you>.workers.dev/auth/discord/callback"

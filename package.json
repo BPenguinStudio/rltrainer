@@ -6,7 +6,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "cf:dev": "wrangler dev",
+    "cf:deploy": "wrangler deploy"
   },
   "engines": {
     "node": ">=18"
@@ -15,7 +17,11 @@
     "rocket-league",
     "training",
     "guide",
-    "discord-oauth"
+    "discord-oauth",
+    "cloudflare-workers"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^4"
+  }
 }

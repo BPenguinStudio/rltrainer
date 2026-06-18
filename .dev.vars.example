@@ -1,0 +1,7 @@
+# Local secrets for `wrangler dev` (Cloudflare's local Worker runtime).
+# Copy to ".dev.vars" and fill in. These are NOT used by `node server.js`
+# (that one reads .env instead). The .dev.vars file is gitignored.
+
+SESSION_SECRET=some-long-random-string
+DISCORD_CLIENT_ID=
+DISCORD_CLIENT_SECRET=
